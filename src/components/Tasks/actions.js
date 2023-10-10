@@ -1,4 +1,4 @@
 import { createAction } from "redux-actions";
 
-export const ADD_TASK = createAction("ADD_TASK");
-export const DELETE_TASK = createAction("DELETE_TASK");
+export const addTask = createAction("addTask");
+export const deleteTask = createAction("deleteTask");

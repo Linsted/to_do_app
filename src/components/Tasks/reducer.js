@@ -1,5 +1,5 @@
 import { handleActions } from "redux-actions";
-import { ADD_TASK, DELETE_TASK } from "./actions";
+import { addTask, deleteTask } from "./actions";
 
 const initialState = {
   tasks: [
@@ -12,11 +12,13 @@ const initialState = {
 };
 
 const tasksReducerMap = {
-  [ADD_TASK]: (state, { payload }) => ({
+  [addTask]: (state, { payload }) => ({
     ...state,
     tasks: [...state.tasks, payload],
   }),
-  [DELETE_TASK]: () => {},
+  [deleteTask]: () => {},
 };
 
-export const tasksReducer = handleActions(tasksReducerMap, initialState);
+const tasksReducer = handleActions(tasksReducerMap, initialState);
+
+export default tasksReducer;
