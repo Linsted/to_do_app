@@ -22,7 +22,13 @@ const tasksReducerMap = {
     tasks: [...state.tasks, payload],
   }),
 
-  [deleteTask]: () => {},
+  [deleteTask]: (state, { payload }) => {
+    console.log(payload);
+    return {
+      ...state,
+      tasks: state.tasks.filter((task) => task.id !== payload),
+    };
+  },
 
   [toggleTaskStatus]: (state, { payload }) => {
     return {
