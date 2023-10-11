@@ -1,14 +1,17 @@
-import { useDispatch, useSelector } from "react-redux";
-import { createPortal } from "react-dom";
-import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
+import { createPortal } from "react-dom";
+import { useDispatch, useSelector } from "react-redux";
 
-import isModalOpenSelector from "./selectors";
 import { setModalWindow } from "./actions";
+import { isModalOpenSelector, getCurrentUserSelector } from "./selectors";
 
-export default function ModalWindow({ children, id }) {
+export default function ModalWindow({ children }) {
   const isModalOpen = useSelector(isModalOpenSelector);
+  const id = useSelector(getCurrentUserSelector);
+
   const dispatch = useDispatch();
+  console.log(id);
 
   const handleClose = () => {
     dispatch(setModalWindow());
@@ -16,9 +19,8 @@ export default function ModalWindow({ children, id }) {
 
   return createPortal(
     <Modal show={isModalOpen} onHide={handleClose}>
-      <Modal.Header closeButton>
-        <Modal.Title>Modal heading</Modal.Title>
-      </Modal.Header>
+      <Modal.Header closeButton />
+
       <Modal.Body>Woohoo, you are reading this text in a modal!</Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={handleClose}>

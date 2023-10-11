@@ -5,16 +5,21 @@ import PropTypes from "prop-types";
 import { BUTTONS_TEXT, BUTTON_VARIANTS } from "./constants";
 import { useDispatch } from "react-redux";
 import { deleteTask } from "../Tasks/actions";
+import { setModalWindow } from "../ModalWindow/actions";
 
 export default function TaskButtonGroup({ id }) {
   const dispatch = useDispatch();
+
+  const handleDeleteClick = () => dispatch(deleteTask(id));
+
+  const handleEditClick = () => dispatch(setModalWindow(id));
+
   return (
     <ButtonGroup size="sm" style={{ width: "14rem", marginInline: "auto" }}>
-      <Button variant={BUTTON_VARIANTS.PRIMARY}>{BUTTONS_TEXT.EDIT}</Button>
-      <Button
-        onClick={() => dispatch(deleteTask(id))}
-        variant={BUTTON_VARIANTS.SECONDARY}
-      >
+      <Button onClick={handleEditClick} variant={BUTTON_VARIANTS.PRIMARY}>
+        {BUTTONS_TEXT.EDIT}
+      </Button>
+      <Button onClick={handleDeleteClick} variant={BUTTON_VARIANTS.SECONDARY}>
         {BUTTONS_TEXT.DELETE}
       </Button>
     </ButtonGroup>

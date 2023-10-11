@@ -3,9 +3,12 @@ import { MODAL_KEY } from "./constants";
 
 const getModalStatus = (state) => state[MODAL_KEY];
 
-const isModalOpenSelector = createSelector(
+export const isModalOpenSelector = createSelector(
   getModalStatus,
   (modal) => modal.isModalOpen
 );
 
-export default isModalOpenSelector;
+export const getCurrentUserSelector = createSelector(
+  getModalStatus,
+  (modal) => modal.id
+);
