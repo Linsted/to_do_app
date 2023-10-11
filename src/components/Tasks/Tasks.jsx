@@ -1,8 +1,5 @@
-import { useSelector } from "react-redux";
-import getTasksSelector from "./selectors";
+import TasksList from "../TasksList/TasksList";
 
 export default function Tasks() {
-  const tasks = useSelector(getTasksSelector);
-  console.log(tasks)
-  return <div>TASKS</div>;
+  return <TasksList />;
 }
