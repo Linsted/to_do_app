@@ -1,5 +1,5 @@
 import { handleActions } from "redux-actions";
-import { addTask, deleteTask, toggleTaskStatus } from "./actions";
+import { addTask, deleteTask, toggleTaskStatus, updateTask } from "./actions";
 
 const initialState = {
   tasks: [
@@ -22,8 +22,19 @@ const tasksReducerMap = {
     tasks: [...state.tasks, payload],
   }),
 
+  [updateTask]: (state, { payload }) => {
+    return {
+      ...state,
+      tasks: state.tasks.map((task) => {
+        if (task.id !== payload.id) {
+          return task;
+        }
+        return { ...task, title: payload.title, text: payload.text };
+      }),
+    };
+  },
+
   [deleteTask]: (state, { payload }) => {
-    console.log(payload);
     return {
       ...state,
       tasks: state.tasks.filter((task) => task.id !== payload),

@@ -7,13 +7,12 @@ import { toggleTaskStatus } from "../Tasks/actions";
 
 export default function TaskStatusCheckbox({ completed, id }) {
   const dispatch = useDispatch();
+
+  const handleChange = () => dispatch(toggleTaskStatus(id));
+
   return (
     <div className="d-flex justify-content-sm-between mb-4">
-      <Form.Check
-        type="checkbox"
-        onChange={() => dispatch(toggleTaskStatus(id))}
-        checked={completed}
-      />
+      <Form.Check type="checkbox" onChange={handleChange} checked={completed} />
       {completed && <Badge bg="success">Completed</Badge>}
     </div>
   );
