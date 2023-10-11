@@ -2,10 +2,11 @@ import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Button from "react-bootstrap/Button";
 import PropTypes from "prop-types";
 
-import { BUTTONS_TEXT, BUTTON_VARIANTS } from "./constants";
+import { BUTTONS_TEXT } from "./constants";
 import { useDispatch } from "react-redux";
 import { deleteTask } from "../Tasks/actions";
 import { setModalWindow } from "../ModalWindow/actions";
+import { BUTTON_VARIANTS } from "../../helpers/constants";
 
 export default function TaskButtonGroup({ id }) {
   const dispatch = useDispatch();

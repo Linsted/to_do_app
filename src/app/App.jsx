@@ -8,8 +8,9 @@ function App() {
   return (
     <>
       <Header />
-      <Tasks />
       <StatusFilter />
+      <Tasks />
+
       <ModalWindow />
     </>
   );

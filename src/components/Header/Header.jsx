@@ -1,6 +1,8 @@
 import Button from "react-bootstrap/Button";
 import { useDispatch } from "react-redux";
 import { setModalWindow } from "../ModalWindow/actions";
+import { BUTTON_VARIANTS } from "../../helpers/constants";
+import { BUTTON_TEXT, TITLE } from "./constants";
 
 export default function Header() {
   const dispatch = useDispatch();
@@ -9,13 +11,13 @@ export default function Header() {
 
   return (
     <div className="position-relative">
-      <h1> Task Hub </h1>
+      <h1>{TITLE}</h1>
       <Button
         onClick={handleClick}
         className="position-absolute top-0 start-0"
-        variant="success"
+        variant={BUTTON_VARIANTS.SUCCESS}
       >
-        Add Task
+        {BUTTON_TEXT}
       </Button>
     </div>
   );
