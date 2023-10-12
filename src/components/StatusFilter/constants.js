@@ -5,3 +5,9 @@ export const STATUS_FILTERS = Object.freeze({
   ACTIVE: "active",
   COMPLETED: "completed",
 });
+
+export const BUTTON_NAMES = Object.freeze({
+  ALL: "All",
+  ACTIVE: "Active",
+  COMPLETED: "Completed",
+});

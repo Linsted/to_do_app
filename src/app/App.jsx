@@ -10,7 +10,6 @@ function App() {
       <Header />
       <StatusFilter />
       <Tasks />
-
       <ModalWindow />
     </>
   );

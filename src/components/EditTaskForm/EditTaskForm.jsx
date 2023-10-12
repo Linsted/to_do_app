@@ -3,7 +3,15 @@ import Button from "react-bootstrap/Button";
 import PropTypes from "prop-types";
 
 import { useEditTaskForm } from "./useEditTaskForm";
-import { FORM_TYPE } from "../../helpers/constants";
+import {
+  FORM_TYPE,
+  PLACEHOLDER,
+  INPUT_NAME,
+  ERROR_TEXT,
+  LABEL,
+  BUTTON_TYPES,
+} from "../../helpers/constants";
+import { BUTTON_TEXT } from "./constants";
 
 export default function EditTaskForm({ id }) {
   const { validated, handleSubmit, currentTask } = useEditTaskForm(id);
@@ -11,28 +19,28 @@ export default function EditTaskForm({ id }) {
   return (
     <Form noValidate validated={validated} onSubmit={handleSubmit}>
       <Form.Group>
-        <Form.Label>Title</Form.Label>
+        <Form.Label>{LABEL.TITLE}</Form.Label>
         <Form.Control
-          type={FORM_TYPE}
-          placeholder="Add title..."
+          type={FORM_TYPE.TEXT}
+          placeholder={PLACEHOLDER.TITLE}
           required
-          name="title"
+          name={INPUT_NAME.TITLE}
           defaultValue={currentTask.title}
         />
         <Form.Control.Feedback type="invalid">
-          Please add title.
+          {ERROR_TEXT}
         </Form.Control.Feedback>
       </Form.Group>
       <Form.Group>
-        <Form.Label>Task</Form.Label>
+        <Form.Label>{LABEL.TASK}</Form.Label>
         <Form.Control
-          type={FORM_TYPE}
-          placeholder="Add task..."
-          name="text"
+          type={FORM_TYPE.TEXT}
+          placeholder={PLACEHOLDER.TASK}
+          name={INPUT_NAME.TEXT}
           defaultValue={currentTask.text}
         />
       </Form.Group>
-      <Button type="submit">Submit form</Button>
+      <Button type={BUTTON_TYPES.SUBMIT}>{BUTTON_TEXT}</Button>
     </Form>
   );
 }

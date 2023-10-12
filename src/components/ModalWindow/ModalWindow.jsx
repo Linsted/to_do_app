@@ -32,7 +32,9 @@ export default function ModalWindow() {
   return createPortal(
     <Modal show={isModalOpen} onHide={handleClose}>
       <Modal.Header closeButton />
-      <Modal.Body>{<EditTaskForm id={id} />}</Modal.Body>
+      <Modal.Body>
+        <EditTaskForm id={id} />
+      </Modal.Body>
     </Modal>,
     document.querySelector("#modal-root")
   );

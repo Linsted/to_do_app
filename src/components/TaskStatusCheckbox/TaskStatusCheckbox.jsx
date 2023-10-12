@@ -4,6 +4,7 @@ import Badge from "react-bootstrap/Badge";
 import PropTypes from "prop-types";
 
 import { toggleTaskStatus } from "../Tasks/actions";
+import { FORM_TYPE } from "../../helpers/constants";
 
 export default function TaskStatusCheckbox({ completed, id }) {
   const dispatch = useDispatch();
@@ -12,7 +13,11 @@ export default function TaskStatusCheckbox({ completed, id }) {
 
   return (
     <div className="d-flex justify-content-sm-between mb-4">
-      <Form.Check type="checkbox" onChange={handleChange} checked={completed} />
+      <Form.Check
+        type={FORM_TYPE.CHECKBOX}
+        onChange={handleChange}
+        checked={completed}
+      />
       {completed && <Badge bg="success">Completed</Badge>}
     </div>
   );

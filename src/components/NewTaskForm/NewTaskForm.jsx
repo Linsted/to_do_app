@@ -1,70 +1,50 @@
-import { useState, useId } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { useDispatch } from "react-redux";
 
-import { addTask } from "../Tasks/actions";
-import { setModalWindow } from "../ModalWindow/actions";
+import useNewTaskForm from "./useNewTaskForm";
+import {
+  BUTTON_TYPES,
+  FORM_TYPE,
+  PLACEHOLDER,
+  INPUT_NAME,
+  LABEL,
+  ERROR_TEXT,
+} from "../../helpers/constants";
+import { BUTTON_TEXT_NEW, CHECK_LABEL, FEEDBACK_TYPE } from "./constants";
 
 export default function NewTaskForm() {
-  const [validated, setValidated] = useState(false);
-
-  const dispatch = useDispatch();
-  const id = useId();
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    event.stopPropagation();
-
-    const form = event.currentTarget;
-
-    if (form.checkValidity() === false) {
-      return setValidated(true);
-    }
-
-    const title = form.elements.title.value;
-    const text = form.elements.text.value;
-    const isCompleted = form.elements.completed.checked;
-
-    const newTask = {
-      id: id,
-      title,
-      text,
-      completed: isCompleted,
-    };
-
-    setValidated(false);
-    dispatch(addTask(newTask));
-    dispatch(setModalWindow());
-  };
+  const { validated, handleSubmit } = useNewTaskForm();
 
   return (
     <Form noValidate validated={validated} onSubmit={handleSubmit}>
       <Form.Group>
-        <Form.Label>Title</Form.Label>
+        <Form.Label>{LABEL.TITLE}</Form.Label>
         <Form.Control
-          type="text"
-          placeholder="Add title..."
+          type={FORM_TYPE.TEXT}
+          placeholder={PLACEHOLDER.TITLE}
           required
-          name="title"
+          name={INPUT_NAME.TITLE}
         />
-        <Form.Control.Feedback type="invalid">
-          Please add title.
+        <Form.Control.Feedback type={FEEDBACK_TYPE}>
+          {ERROR_TEXT}
         </Form.Control.Feedback>
       </Form.Group>
       <Form.Group>
-        <Form.Label>Task</Form.Label>
-        <Form.Control type="text" placeholder="Add task..." name="text" />
+        <Form.Label>{LABEL.TASK}</Form.Label>
+        <Form.Control
+          type={FORM_TYPE.TEXT}
+          placeholder={PLACEHOLDER.TASK}
+          name={INPUT_NAME.TEXT}
+        />
       </Form.Group>
       <Form.Group>
         <Form.Check
-          type="checkbox"
-          id="custom-switch"
-          label="Check if task is completed."
-          name="completed"
+          type={FORM_TYPE.CHECKBOX}
+          label={CHECK_LABEL}
+          name={INPUT_NAME.COMPLETED}
         />
       </Form.Group>
-      <Button type="submit">Submit form</Button>
+      <Button type={BUTTON_TYPES.SUBMIT}>{BUTTON_TEXT_NEW}</Button>
     </Form>
   );
 }

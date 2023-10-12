@@ -10,7 +10,7 @@ export default function Header() {
   const handleClick = () => dispatch(setModalWindow());
 
   return (
-    <div className="position-relative">
+    <div style={{ minWidth: "38rem", position: "relative" }}>
       <h1>{TITLE}</h1>
       <Button
         onClick={handleClick}
